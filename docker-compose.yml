@@ -12,17 +12,17 @@ services:
       - ./:/usr/workspace
     command: /bin/sh -c "ls -la && pytest -sv --alluredir=allure-results"
     working_dir: /usr/workspace
-#    environment:
-#      - BASE_URL=${BASE_URL}
-#      - API_BASE_URL=${API_BASE_URL}
-#      - X_NODE_ID=${X_NODE_ID}
-#      - LOGIN_PLAYER=${LOGIN_PLAYER}
-#      - PASSWORD_PLAYER=${PASSWORD_PLAYER}
-#      - LOGIN_ADMIN=${LOGIN_ADMIN}
-#      - PASSWORD_ADMIN=${PASSWORD_ADMIN}
-#      - SSO_URL=${SSO_URL}
-#      - NAME_DB=${NAME_DB}
-#      - USER_DB=${USER_DB}
-#      - PASSWORD_DB=${PASSWORD_DB}
-#      - HOST_DB=${HOST_DB}
-#      - PORT_DB=${PORT_DB}
+    environment:
+      - BASE_URL=${BASE_URL}
+      - API_BASE_URL=${API_BASE_URL}
+      - X_NODE_ID=${X_NODE_ID}
+      - LOGIN_PLAYER=${LOGIN_PLAYER}
+      - PASSWORD_PLAYER=${PASSWORD_PLAYER}
+      - LOGIN_ADMIN=${LOGIN_ADMIN}
+      - PASSWORD_ADMIN=${PASSWORD_ADMIN}
+      - SSO_URL=${SSO_URL}
+      - NAME_DB=${NAME_DB}
+      - USER_DB=${USER_DB}
+      - PASSWORD_DB=${PASSWORD_DB}
+      - HOST_DB=${HOST_DB}
+      - PORT_DB=${PORT_DB}

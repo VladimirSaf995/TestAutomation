@@ -10,29 +10,29 @@ import psycopg2
 @pytest.fixture(scope="session", autouse=True)
 def config(request):
         #For github action
-        # return {
-        #     "web": {
-        #         "baseUrl": os.getenv("BASE_URL")
-        #     },
-        #     "api": {
-        #         "baseUrl": os.getenv("API_BASE_URL"),
-        #         "ssoUrl": os.getenv("SSO_URL"),
-        #         "X-Node-Id": os.getenv("X_NODE_ID"),
-        #         "Login_player": os.getenv("LOGIN_PLAYER"),
-        #         "Password_player": os.getenv("PASSWORD_PLAYER"),
-        #         "Login_admin": os.getenv("LOGIN_ADMIN"),
-        #         "Password_admin": os.getenv("PASSWORD_ADMIN"),
-        #          "dbname": os.getenv("NAME_DB"),
-        #          "user": os.getenv("USER_DB"),
-        #          "password": os.getenv("PASSWORD_DB"),
-        #          "host": os.getenv("HOST_DB"),
-        #          "port": os.getenv("PORT_DB")
-        #     }
-        # }
+        return {
+            "web": {
+                "baseUrl": os.getenv("BASE_URL")
+            },
+            "api": {
+                "baseUrl": os.getenv("API_BASE_URL"),
+                "ssoUrl": os.getenv("SSO_URL"),
+                "X-Node-Id": os.getenv("X_NODE_ID"),
+                "Login_player": os.getenv("LOGIN_PLAYER"),
+                "Password_player": os.getenv("PASSWORD_PLAYER"),
+                "Login_admin": os.getenv("LOGIN_ADMIN"),
+                "Password_admin": os.getenv("PASSWORD_ADMIN"),
+                 "dbname": os.getenv("NAME_DB"),
+                 "user": os.getenv("USER_DB"),
+                 "password": os.getenv("PASSWORD_DB"),
+                 "host": os.getenv("HOST_DB"),
+                 "port": os.getenv("PORT_DB")
+            }
+        }
         # Loading data from the target.json file for local launches and from jenkins
-        config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), request.config.getoption("--target"))
-        with open(config_file) as f:
-            return json.load(f)
+        # config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), request.config.getoption("--target"))
+        # with open(config_file) as f:
+        #     return json.load(f)
 
 
 # Fixture to initialize Authorization

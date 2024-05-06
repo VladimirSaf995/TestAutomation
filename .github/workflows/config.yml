@@ -1,0 +1,68 @@
+#name: UI/API Tests
+#
+#on:
+#  schedule:
+#    - cron: '0 */8 * * *'
+#
+#jobs:
+#  ui-tests:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout repository
+#        uses: actions/checkout@v2
+#
+#      # Шаг для кэширования зависимостей Python
+#      - name: Cache Python dependencies
+#        uses: actions/cache@v2
+#        with:
+#          path: ~/.cache/pip
+#          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+#          restore-keys: |
+#            ${{ runner.os }}-pip-
+#
+#      - name: Checkout (copy) gh-pages repository to GitHub runner
+#        uses: actions/checkout@v2
+#        with:
+#          ref: gh-pages
+#          path: ./.github/gh-pages
+#
+#      - name: Run UI/API-tests via docker-compose
+#        env:
+#          BASE_URL: ${{ secrets.BASE_URL }}
+#          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+#          X_NODE_ID: ${{ secrets.X_NODE_ID }}
+#          LOGIN_PLAYER: ${{ secrets.LOGIN_PLAYER }}
+#          PASSWORD_PLAYER: ${{ secrets.PASSWORD_PLAYER }}
+#          LOGIN_ADMIN: ${{ secrets.LOGIN_ADMIN }}
+#          PASSWORD_ADMIN: ${{ secrets.PASSWORD_ADMIN }}
+#          SSO_URL: ${{ secrets.SSO_URL }}
+#          NAME_DB: ${{ secrets.NAME_DB }}
+#          USER_DB: ${{ secrets.USER_DB }}
+#          PASSWORD_DB: ${{ secrets.PASSWORD_DB }}
+#          HOST_DB: ${{ secrets.HOST_DB }}
+#          PORT_DB: ${{ secrets.PORT_DB }}
+#        run: |
+#          docker-compose up --exit-code-from regression || true
+#
+#      - name: Copy history from gh-pages to allure-results
+#        run: |
+#          sudo mkdir -p allure-results/history
+#          sudo cp -R ./.github/gh-pages/history/* allure-results/history/
+#
+#      - name: Generate Allure report
+#        run: |
+#          sudo docker-compose run regression /bin/sh -c "allure generate allure-results --clean -o allure-report"
+#
+#      - name: Update Allure history
+#        run: |
+#          sudo cp -R allure-report/history/* ./.github/gh-pages/history/
+#
+#      - name: Deploy to GitHub Pages
+#        uses: JamesIves/github-pages-deploy-action@4.1.5
+#        with:
+#          token: ${{ secrets.CI_TOKEN }}
+#          branch: gh-pages
+#          folder: allure-report
+#          clean: true
+

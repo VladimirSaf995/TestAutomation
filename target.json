@@ -1,0 +1,21 @@
+{
+  "web": {
+    "baseUrl": "url"
+  },
+  "api": {
+    "baseUrl": "url",
+    "ssoUrl": "url",
+    "X-Node-Id": "id",
+    "Login_player": "login",
+    "Password_player": "password",
+    "Login_admin": "login",
+    "Password_admin": "password"
+  },
+  "bd": {
+    "dbname": "dbname",
+    "user": "user",
+    "password": "password",
+    "host": "host",
+    "port": "port"
+  }
+}
